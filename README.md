@@ -1,1 +1,1 @@
-# week-4-homework-2
+This apllication provides us to search type of photos by using JSONApp.
