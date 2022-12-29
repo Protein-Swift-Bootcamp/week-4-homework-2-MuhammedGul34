@@ -11,7 +11,9 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
     
     var response : PhotoResponse? {
         didSet {
-            tableView.reloadData()
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
         }
     }
     
@@ -54,6 +56,23 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
         }.resume()
     }
     
+    private func fetchImages(with url: String?, completion: @escaping (Data) -> Void){
+        if let urlString = url, let url = URL(string: urlString){
+            let request = URLRequest(url: url)
+            URLSession.shared.dataTask(with: request) { data, response, error in
+                if let error = error {
+                    debugPrint(error)
+                    return
+                }
+                if let data = data {
+                    DispatchQueue.main.async {
+                        completion(data)
+                    }
+                }
+            }.resume()
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -66,17 +85,40 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
         self.tableView.register(UINib(nibName: "RecentPhotoCustomCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 10
+        return response?.photos?.photo.count ?? 0
     }
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let photo = response?.photos?.photo[indexPath.row]
+        
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RecentPhotoCustomCell
         cell.userProfileImage.image = UIImage(named: "profile")
-        cell.RecentPhotoImage.image = UIImage(named: "profile")
-        cell.userNameLabel.text = "Muhammed Gül"
-        cell.userCommentLabel.text = "A good picture of myself"
+        
+        fetchImages(with: photo?.urlN) { data in
+            cell.RecentPhotoImage.image = UIImage(data: data)
+        }
+       
+        if let iconserver = photo?.iconserver,
+           let iconfarm = photo?.iconfarm,
+           let nsid = photo?.owner,
+           NSString(string: iconserver).intValue > 0  {
+            fetchImages(with: "http://farm\(iconfarm).staticflickr.com/\(iconserver)/buddyicons/\(nsid).jpg") { data in
+                cell.userProfileImage.image = UIImage(data: data)
+            }
+        } else {
+                fetchImages(with: "https://www.flickr.com/images/buddyicon.gif") { data in
+                    cell.userProfileImage.image = UIImage(data: data)
+            }
+        }
+        
+        cell.RecentPhotoImage.backgroundColor = .darkGray
+        
+        
+        cell.userNameLabel.text = photo?.ownername
+        cell.titleLabel.text = photo?.title
         return cell
     }
     

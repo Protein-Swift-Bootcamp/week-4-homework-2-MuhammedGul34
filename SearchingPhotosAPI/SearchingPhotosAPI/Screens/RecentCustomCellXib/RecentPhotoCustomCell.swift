@@ -11,7 +11,7 @@ class RecentPhotoCustomCell: UITableViewCell {
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var RecentPhotoImage: UIImageView!
-    @IBOutlet weak var userCommentLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
