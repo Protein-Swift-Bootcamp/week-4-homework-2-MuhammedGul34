@@ -17,6 +17,8 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
         }
     }
     
+    private var selectedPhoto: Photo?
+    
     private func setupSearchController(){
         let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
@@ -56,23 +58,6 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
         }.resume()
     }
     
-    private func fetchImages(with url: String?, completion: @escaping (Data) -> Void){
-        if let urlString = url, let url = URL(string: urlString){
-            let request = URLRequest(url: url)
-            URLSession.shared.dataTask(with: request) { data, response, error in
-                if let error = error {
-                    debugPrint(error)
-                    return
-                }
-                if let data = data {
-                    DispatchQueue.main.async {
-                        completion(data)
-                    }
-                }
-            }.resume()
-        }
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -95,26 +80,13 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
         let photo = response?.photos?.photo[indexPath.row]
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! RecentPhotoCustomCell
-        cell.userProfileImage.image = UIImage(named: "profile")
-        
-        fetchImages(with: photo?.urlN) { data in
+        NetworkManager.shared.fetchImages(with: photo?.urlN) { data in
             cell.RecentPhotoImage.image = UIImage(data: data)
         }
        
-        if let iconserver = photo?.iconserver,
-           let iconfarm = photo?.iconfarm,
-           let nsid = photo?.owner,
-           NSString(string: iconserver).intValue > 0  {
-            fetchImages(with: "http://farm\(iconfarm).staticflickr.com/\(iconserver)/buddyicons/\(nsid).jpg") { data in
-                cell.userProfileImage.image = UIImage(data: data)
-            }
-        } else {
-                fetchImages(with: "https://www.flickr.com/images/buddyicon.gif") { data in
-                    cell.userProfileImage.image = UIImage(data: data)
-            }
+        NetworkManager.shared.fetchImages(with: photo?.buddyIconUrl) { data in
+            cell.userProfileImage.image = UIImage(data: data)
         }
-        
-        cell.RecentPhotoImage.backgroundColor = .darkGray
         
         
         cell.userNameLabel.text = photo?.ownername
@@ -125,12 +97,13 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
     
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedPhoto = response?.photos?.photo[indexPath.row]
        performSegue(withIdentifier: "toDetailPhotoVC", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let viewController = segue.destination as? PhotoDetailViewController {
-            //TODO: sending details of photo selected
+            viewController.photo = selectedPhoto
         }
     }
     // MARK: UISearchResultsUpdating

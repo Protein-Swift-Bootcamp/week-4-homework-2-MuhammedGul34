@@ -19,6 +19,7 @@
 		2EB019AB295CDC8B0011D812 /* PhotosResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB019AA295CDC8B0011D812 /* PhotosResponse.swift */; };
 		2EB019AD295CDCFD0011D812 /* Photos.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB019AC295CDCFD0011D812 /* Photos.swift */; };
 		2EB019AF295CDFBF0011D812 /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB019AE295CDFBF0011D812 /* Photo.swift */; };
+		2EB019B3295E3F5F0011D812 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EB019B2295E3F5F0011D812 /* NetworkManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -36,6 +37,7 @@
 		2EB019AA295CDC8B0011D812 /* PhotosResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotosResponse.swift; sourceTree = "<group>"; };
 		2EB019AC295CDCFD0011D812 /* Photos.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photos.swift; sourceTree = "<group>"; };
 		2EB019AE295CDFBF0011D812 /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
+		2EB019B2295E3F5F0011D812 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,8 +80,8 @@
 		2EA1F3F7295C6754000E94A1 /* App */ = {
 			isa = PBXGroup;
 			children = (
-				2EA1F3E3295C674D000E94A1 /* AppDelegate.swift */,
-				2EA1F3E5295C674D000E94A1 /* SceneDelegate.swift */,
+				2EB019B1295E3F3C0011D812 /* Networking */,
+				2EB019B0295E3F170011D812 /* Delegate */,
 			);
 			path = App;
 			sourceTree = "<group>";
@@ -165,6 +167,23 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		2EB019B0295E3F170011D812 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				2EA1F3E3295C674D000E94A1 /* AppDelegate.swift */,
+				2EA1F3E5295C674D000E94A1 /* SceneDelegate.swift */,
+			);
+			path = Delegate;
+			sourceTree = "<group>";
+		};
+		2EB019B1295E3F3C0011D812 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				2EB019B2295E3F5F0011D812 /* NetworkManager.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -237,6 +256,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2EB019B3295E3F5F0011D812 /* NetworkManager.swift in Sources */,
 				2EB019AF295CDFBF0011D812 /* Photo.swift in Sources */,
 				2EA1F3FD295C76CA000E94A1 /* RecentPhotoCustomCell.swift in Sources */,
 				2EA1F3E8295C674D000E94A1 /* RecentPhotosTableViewController.swift in Sources */,

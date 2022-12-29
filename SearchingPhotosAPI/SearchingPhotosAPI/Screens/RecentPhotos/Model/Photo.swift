@@ -81,12 +81,26 @@ struct Photo: Codable {
     }
 }
 
-// MARK: - Description
-struct Description: Codable {
-    let content: String?
-
-    enum CodingKeys: String, CodingKey {
-        case content = "_content"
+extension Photo {
+    var buddyIconUrl: String? {
+        
+        if let iconserver = iconserver,
+           let iconfarm = iconfarm,
+           let nsid = owner,
+           NSString(string: iconserver).intValue > 0  {
+            return "http://farm\(iconfarm).staticflickr.com/\(iconserver)/buddyicons/\(nsid).jpg"
+        } else {
+            return "https://www.flickr.com/images/buddyicon.gif"
+        }
     }
 }
+    
+    // MARK: - Description
+    struct Description: Codable {
+        let content: String?
+        
+        enum CodingKeys: String, CodingKey {
+            case content = "_content"
+        }
+    }
 

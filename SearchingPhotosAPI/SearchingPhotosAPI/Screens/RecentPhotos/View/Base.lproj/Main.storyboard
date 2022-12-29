@@ -38,7 +38,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EKr-1Q-vwc">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="EKr-1Q-vwc">
                                 <rect key="frame" x="0.0" y="0.0" width="393" height="453"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="453" id="Ppb-0U-bGN"/>
@@ -87,7 +87,7 @@
                     <navigationItem key="navigationItem" id="xzi-0b-Jhx"/>
                     <connections>
                         <outlet property="imageView" destination="EKr-1Q-vwc" id="v1A-Q8-7cW"/>
-                        <outlet property="userCommentLabel" destination="P4t-xd-8In" id="Awn-Vw-KRH"/>
+                        <outlet property="userDescriptionLabel" destination="P4t-xd-8In" id="Awn-Vw-KRH"/>
                         <outlet property="userImageView" destination="55p-Z6-nXD" id="8Qz-3z-wMY"/>
                         <outlet property="userNameLabel" destination="6kW-eZ-scb" id="fG0-F5-uma"/>
                     </connections>
