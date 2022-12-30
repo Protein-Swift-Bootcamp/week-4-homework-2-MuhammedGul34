@@ -9,6 +9,8 @@ import UIKit
 
 class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpdating {
     
+    @IBOutlet weak var progressBar: UIProgressView!
+    
     var response : PhotoResponse? {
         didSet {
             DispatchQueue.main.async {
@@ -19,13 +21,24 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
     
     private var selectedPhoto: Photo?
     
+    private func handleProgressBar(){
+        progressBar.progress = 0
+        Timer.scheduledTimer(withTimeInterval: 0.2, repeats: true) { (timer) in
+            self.progressBar.progress += 0.2
+            let deger : Float = self.progressBar.progress
+            if deger == 1 {
+                timer.invalidate()
+                self.progressBar.isHidden = true
+            }
+        }
+    }
+    
     private func setupSearchController(){
         let search = UISearchController(searchResultsController: nil)
         search.searchResultsUpdater = self
         search.obscuresBackgroundDuringPresentation = false
         search.searchBar.placeholder = "Type here to search"
         navigationItem.searchController = search
-        
     }
     
     private func fetchRequest(){
@@ -61,6 +74,8 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        handleProgressBar()
+        
         fetchRequest()
         setupSearchController()
         
@@ -69,9 +84,11 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
       
         self.tableView.register(UINib(nibName: "RecentPhotoCustomCell", bundle: nil), forCellReuseIdentifier: "cell")
     }
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return response?.photos?.photo.count ?? 0
     }
+    
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
@@ -94,8 +111,6 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
         return cell
     }
     
-    
-    
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         selectedPhoto = response?.photos?.photo[indexPath.row]
        performSegue(withIdentifier: "toDetailPhotoVC", sender: nil)
@@ -114,8 +129,5 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
         }
     }
 }
-
-
-
 
 

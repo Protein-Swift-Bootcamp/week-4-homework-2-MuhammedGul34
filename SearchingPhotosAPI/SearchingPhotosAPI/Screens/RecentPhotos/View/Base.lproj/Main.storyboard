@@ -3,12 +3,13 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21505"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Current Photos-->
+        <!--Recent Photos-->
         <scene sceneID="d6a-9h-0Cn">
             <objects>
                 <tableViewController id="oYe-uL-5sY" customClass="RecentPhotosTableViewController" customModule="SearchingPhotosAPI" customModuleProvider="target" sceneMemberID="viewController">
@@ -16,13 +17,24 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <progressView key="tableHeaderView" opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" id="Bil-Gh-Gnq">
+                            <rect key="frame" x="0.0" y="0.0" width="393" height="4"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="progressTintColor" name="AccentColor"/>
+                        </progressView>
+                        <activityIndicatorView key="tableFooterView" opaque="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="medium" id="3uG-ke-OdC">
+                            <rect key="frame" x="0.0" y="4" width="393" height="59"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <color key="color" systemColor="systemBlueColor"/>
+                        </activityIndicatorView>
                         <connections>
                             <outlet property="dataSource" destination="oYe-uL-5sY" id="U4X-h6-UkS"/>
                             <outlet property="delegate" destination="oYe-uL-5sY" id="2wn-NH-6Dn"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Current Photos" id="8ix-pT-rvp"/>
+                    <navigationItem key="navigationItem" title="Recent Photos" id="8ix-pT-rvp"/>
                     <connections>
+                        <outlet property="progressBar" destination="Bil-Gh-Gnq" id="Es9-yi-f9q"/>
                         <segue destination="54Q-jM-fzK" kind="show" identifier="toDetailPhotoVC" id="hvh-Wb-mTv"/>
                     </connections>
                 </tableViewController>
@@ -114,8 +126,14 @@
         </scene>
     </scenes>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemBlueColor">
+            <color red="0.0" green="0.47843137254901963" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
