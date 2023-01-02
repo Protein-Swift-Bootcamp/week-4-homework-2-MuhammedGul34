@@ -41,6 +41,7 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
         navigationItem.searchController = search
     }
     
+    // Fetching datas when we look app in the first page
     private func fetchRequest(){
         guard let url = URL(string: "https://www.flickr.com/services/rest/?method=flickr.photos.getRecent&api_key=de0b083d4a218ed778abc1dbdc6811e2&format=json&nojsoncallback=1&extras=description,owner_name,icon_server,url_n,url_z") else {return}
         let request = URLRequest(url: url)
@@ -55,7 +56,7 @@ class RecentPhotosTableViewController: UITableViewController, UISearchResultsUpd
             }
         }.resume()
     }
-    
+    // Fetching data when we search specialized topic
     private func searchPhotos(with text: String){
         guard let url = URL(string: "https://www.flickr.com/services/rest/?method=flickr.photos.search&api_key=de0b083d4a218ed778abc1dbdc6811e2&text=\(text)&format=json&nojsoncallback=1&extras=description,owner_name,icon_server,url_n,url_z") else {return}
         let request = URLRequest(url: url)

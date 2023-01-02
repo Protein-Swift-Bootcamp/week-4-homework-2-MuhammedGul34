@@ -30,14 +30,19 @@ extension RecentPhotosTableViewController {
         
         cell.userNameLabel.text = photo?.ownername
         cell.titleLabel.text = photo?.title
+
         return cell
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedPhoto = response?.photos?.photo[indexPath.row]
+        
         let vc = self.storyboard?.instantiateViewController(withIdentifier: "PhotoDetail") as! PhotoDetailViewController
+        
         let navController = UINavigationController(rootViewController: vc)
+        
         vc.photo = selectedPhoto
+        
         self.present(navController, animated: true, completion: nil)
     }
 }

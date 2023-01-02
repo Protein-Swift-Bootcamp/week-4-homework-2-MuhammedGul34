@@ -8,6 +8,7 @@
 import UIKit
 
 class RecentPhotoCustomCell: UITableViewCell {
+    
     @IBOutlet weak var userProfileImage: UIImageView!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var RecentPhotoImage: UIImageView!
@@ -15,12 +16,9 @@ class RecentPhotoCustomCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         userProfileImage.layer.cornerRadius = 24
     }
-    
 }

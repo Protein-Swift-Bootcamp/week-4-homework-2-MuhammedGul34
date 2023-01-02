@@ -8,7 +8,6 @@
 
 import Foundation
 
-
 struct Photo: Codable {
     let id, owner, secret, server: String?
     let farm: Int?
@@ -81,9 +80,11 @@ struct Photo: Codable {
     }
 }
 
+
+// Extension for short-cut picking user's photo or default image
 extension Photo {
     var buddyIconUrl: String? {
-        
+    
         if let iconserver = iconserver,
            let iconfarm = iconfarm,
            let nsid = owner,
