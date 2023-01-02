@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		2E2A30A9295C913500F8D78B /* PhotoDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E2A30A7295C913500F8D78B /* PhotoDetailViewController.swift */; };
-		2E9438B42962D14700FE6412 /* ExtensionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9438B32962D14700FE6412 /* ExtensionViewController.swift */; };
 		2EA1F3E4295C674D000E94A1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA1F3E3295C674D000E94A1 /* AppDelegate.swift */; };
 		2EA1F3E6295C674D000E94A1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA1F3E5295C674D000E94A1 /* SceneDelegate.swift */; };
 		2EA1F3E8295C674D000E94A1 /* RecentPhotosTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2EA1F3E7295C674D000E94A1 /* RecentPhotosTableViewController.swift */; };
@@ -25,7 +24,6 @@
 
 /* Begin PBXFileReference section */
 		2E2A30A7295C913500F8D78B /* PhotoDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoDetailViewController.swift; sourceTree = "<group>"; };
-		2E9438B32962D14700FE6412 /* ExtensionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionViewController.swift; sourceTree = "<group>"; };
 		2EA1F3E0295C674D000E94A1 /* SearchingPhotosAPI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SearchingPhotosAPI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2EA1F3E3295C674D000E94A1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2EA1F3E5295C674D000E94A1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -139,7 +137,6 @@
 			isa = PBXGroup;
 			children = (
 				2EA1F3E7295C674D000E94A1 /* RecentPhotosTableViewController.swift */,
-				2E9438B32962D14700FE6412 /* ExtensionViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -265,7 +262,6 @@
 				2EA1F3E8295C674D000E94A1 /* RecentPhotosTableViewController.swift in Sources */,
 				2EA1F3E4295C674D000E94A1 /* AppDelegate.swift in Sources */,
 				2EB019AB295CDC8B0011D812 /* PhotosResponse.swift in Sources */,
-				2E9438B42962D14700FE6412 /* ExtensionViewController.swift in Sources */,
 				2E2A30A9295C913500F8D78B /* PhotoDetailViewController.swift in Sources */,
 				2EA1F3E6295C674D000E94A1 /* SceneDelegate.swift in Sources */,
 				2EB019AD295CDCFD0011D812 /* Photos.swift in Sources */,
